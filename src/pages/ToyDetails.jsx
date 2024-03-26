@@ -3,9 +3,7 @@ import { Link, useParams } from "react-router-dom"
 import { toyService } from "../services/toy.service.js"
 
 
-
-
-export function ToyDetails(){
+export function ToyDetails() {
     const [toy, setToy] = useState(null)
     const { toyId } = useParams()
 
@@ -29,10 +27,10 @@ export function ToyDetails(){
             <h5>Price: ${toy.price}</h5>
             <p>⛐</p>
             {toy.desc &&
-            <p>{toy.desc}</p>
+                <p>{toy.desc}</p>
             }
-             {!toy.desc &&
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi voluptas cumque tempore, aperiam sed dolorum rem! Nemo quidem, placeat perferendis tempora aspernatur sit, explicabo veritatis corrupti perspiciatis repellat, enim quibusdam!</p>
+            {!toy.desc &&
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi voluptas cumque tempore, aperiam sed dolorum rem! Nemo quidem, placeat perferendis tempora aspernatur sit, explicabo veritatis corrupti perspiciatis repellat, enim quibusdam!</p>
             }
             <Link to={`/toy/edit/${toy._id}`}>Edit</Link> &nbsp;
             <Link to={`/toy`}>Back</Link>

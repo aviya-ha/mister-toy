@@ -10,12 +10,28 @@ export const toyService = {
     getById,
     remove,
     save,
+    getDefaultFilter,
 }
 
 _createToys()
 
-function query() {
-    return aStorageService.query(STORAGE_KEY).then(toys => toys)
+function query(filterBy = {}) {
+console.log('filterBy:', filterBy)
+    return aStorageService.query(STORAGE_KEY)
+        .then(toys => {
+            if (!filterBy.name) filterBy.name = ''
+            if (!filterBy.maxPrice) filterBy.maxPrice = Infinity
+            if (!filterBy.inStock) filterBy.inStock ='all'
+            if (filterBy.inStock === 'inStock') filterBy.inStock = false
+            if (filterBy.inStock === 'outStock') filterBy.inStock = true
+            if (filterBy.inStock === 'all') filterBy.inStock = null
+                const regExp = new RegExp(filterBy.name, 'i')
+            return toys.filter(toy =>
+                regExp.test(toy.name) &&
+                toy.price <= filterBy.maxPrice &&
+                toy.inStock !== filterBy.inStock  
+            )
+        })
 }
 
 function getById(toyId) {
@@ -40,17 +56,21 @@ function getEmptyToy() {
         price: 0,
         labels: [],
         desc: '',
-        inStock:(Math.random()>0.5)? true : false
+        inStock: (Math.random() > 0.5) ? true : false
     }
+}
+
+function getDefaultFilter() {
+    return { name: '', maxPrice: '', inStock: 'all' }
 }
 
 function _createToys() {
     let toys = utilService.loadFromStorage(STORAGE_KEY)
     if (!toys || !toys.length) {
         toys = []
-        toys.push(_createToy('Teddy Bear' , 15))
-        toys.push(_createToy('Rubber Duck' , 50))
-        toys.push(_createToy('Toy toy' , 150))
+        toys.push(_createToy('Teddy Bear', 15))
+        toys.push(_createToy('Rubber Duck', 50))
+        toys.push(_createToy('Toy toy', 150))
         toys.push(_createToy('Toy Train', 200))
         toys.push(_createToy('Rocking Horse', 185))
         utilService.saveToStorage(STORAGE_KEY, toys)
