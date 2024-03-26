@@ -9,7 +9,7 @@ import { HomePage } from './pages/HomePage.jsx'
 // import { AboutUs } from './pages/AboutUs.jsx'
 import { store } from './store/store.js'
 import { ToyIndex } from './pages/ToyIndex.jsx'
-// import { ToyEdit } from './pages/ToyEdit.jsx'
+import { ToyEdit } from './pages/ToyEdit.jsx'
 // import { ToyDetails } from './pages/ToyDetails.jsx'
 
 
@@ -24,8 +24,8 @@ export function App() {
                             <Route element={<HomePage />} path="/" />
                             {/* <Route element={<AboutUs />} path="/about" /> */}
                             <Route element={<ToyIndex />} path="/toy" />
-                            {/* <Route element={<ToyEdit />} path="/toy/edit" /> */}
-                            {/* <Route element={<ToyEdit />} path="/toy/edit/:toyId" /> */}
+                            <Route element={<ToyEdit />} path="/toy/edit" />
+                            <Route element={<ToyEdit />} path="/toy/edit/:toyId" />
                             {/* <Route element={<ToyDetails />} path="/toy/:toyId" /> */}
                         </Routes>
                     </main>
