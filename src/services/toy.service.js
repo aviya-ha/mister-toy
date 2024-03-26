@@ -9,6 +9,7 @@ export const toyService = {
     getEmptyToy,
     getById,
     remove,
+    save,
 }
 
 _createToys()
@@ -23,6 +24,14 @@ function getById(toyId) {
 
 function remove(toyId) {
     return aStorageService.remove(STORAGE_KEY, toyId)
+}
+
+function save(toy) {
+    if (toy._id) {
+        return aStorageService.put(STORAGE_KEY, toy)
+    } else {
+        return aStorageService.post(STORAGE_KEY, toy)
+    }
 }
 
 function getEmptyToy() {
@@ -41,7 +50,7 @@ function _createToys() {
         toys = []
         toys.push(_createToy('Teddy Bear' , 15))
         toys.push(_createToy('Rubber Duck' , 50))
-        toys.push(_createToy('Toy Car' , 150))
+        toys.push(_createToy('Toy toy' , 150))
         toys.push(_createToy('Toy Train', 200))
         toys.push(_createToy('Rocking Horse', 185))
         utilService.saveToStorage(STORAGE_KEY, toys)
