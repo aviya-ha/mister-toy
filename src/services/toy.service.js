@@ -7,12 +7,22 @@ const STORAGE_KEY = 'toyDB'
 export const toyService = {
     query,
     getEmptyToy,
+    getById,
+    remove,
 }
 
 _createToys()
 
 function query() {
     return aStorageService.query(STORAGE_KEY).then(toys => toys)
+}
+
+function getById(toyId) {
+    return aStorageService.get(STORAGE_KEY, toyId)
+}
+
+function remove(toyId) {
+    return aStorageService.remove(STORAGE_KEY, toyId)
 }
 
 function getEmptyToy() {
@@ -48,6 +58,7 @@ function _createToy(name, price) {
     toy.creatAt = Date.now()
     return toy
 }
+
 function _getRandomLable() {
     const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle',
         'Outdoor', 'Battery Powered']
