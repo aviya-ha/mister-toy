@@ -50,8 +50,6 @@ export function ToyFilter({ filterBy, onSetFilter, onSetSort , sortBy }) {
 
                 <ToySort onSetSort={onSetSort} sortBy={sortBy}/>
 
-
-
             </form>
 
         </section>

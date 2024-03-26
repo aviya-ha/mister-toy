@@ -25,7 +25,7 @@ function query(filterBy = {}, sortBy = {}) {
             if (filterBy.inStock === 'inStock') filterBy.inStock = false
             if (filterBy.inStock === 'outStock') filterBy.inStock = true
             if (filterBy.inStock === 'all') filterBy.inStock = null
-            if (sortBy.type === 'creatAt') {
+            if (sortBy.type === 'createAt') {
                 if (sortBy.desc) sortBy.desc = 1
                 if (!sortBy.desc) sortBy.desc = -1
                 toys.sort((t1, t2) => (sortBy.desc) * (t2.createAt - t1.createAt))
