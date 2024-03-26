@@ -1,0 +1,18 @@
+.home-hero {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    font-size: 20px;
+    background-color: var(--clr2);
+    justify-items: center;
+    border-radius: 0px 0px 25px 25px;
+    padding: 1em;
+
+}
+
+.home-hero h1 {
+    font-size: 1em;
+}
+
+.home-hero img {
+    width: fit-content;
+}
