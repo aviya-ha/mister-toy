@@ -31,10 +31,11 @@ export function ToyIndex() {
     }
 
 
-if (!toys) return <h1>loading...</h1>
+    if (!toys) return <h1>loading...</h1>
     return (
         <section className='toy-index-container'>
             <h1>All the bast toys in on place</h1>
+            <Link to="/toy/edit" ><button>Add new toy</button> </Link>
             <main>
                 <ToysList
                     toys={toys}
