@@ -2,9 +2,10 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 
+import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 
 import { ToysList } from '../cmps/ToysList.jsx'
-import { loadToys } from '../store/actions/toy.actions.js'
+import { loadToys, removeToy } from '../store/actions/toy.actions.js'
 
 
 
@@ -19,6 +20,16 @@ export function ToyIndex() {
             })
     }, [])
 
+    function onRemoveToy(toyId) {
+        removeToy(toyId)
+            .then(() => {
+                showSuccessMsg('Toy removed')
+            })
+            .catch(err => {
+                showErrorMsg('Cannot remove toy')
+            })
+    }
+
 
 if (!toys) return <h1>loading...</h1>
     return (
@@ -27,6 +38,7 @@ if (!toys) return <h1>loading...</h1>
             <main>
                 <ToysList
                     toys={toys}
+                    onRemoveToy={onRemoveToy}
                 />
 
             </main>
