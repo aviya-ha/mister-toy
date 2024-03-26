@@ -15,21 +15,38 @@ export const toyService = {
 
 _createToys()
 
-function query(filterBy = {}) {
-console.log('filterBy:', filterBy)
+function query(filterBy = {}, sortBy = {}) {
+   
     return aStorageService.query(STORAGE_KEY)
         .then(toys => {
             if (!filterBy.name) filterBy.name = ''
             if (!filterBy.maxPrice) filterBy.maxPrice = Infinity
-            if (!filterBy.inStock) filterBy.inStock ='all'
+            if (!filterBy.inStock) filterBy.inStock = 'all'
             if (filterBy.inStock === 'inStock') filterBy.inStock = false
             if (filterBy.inStock === 'outStock') filterBy.inStock = true
             if (filterBy.inStock === 'all') filterBy.inStock = null
-                const regExp = new RegExp(filterBy.name, 'i')
+            if (sortBy.type === 'creatAt') {
+                if (sortBy.desc) sortBy.desc = 1
+                if (!sortBy.desc) sortBy.desc = -1
+                toys.sort((t1, t2) => (sortBy.desc) * (t2.createAt - t1.createAt))
+            }
+            if (sortBy.type === 'price') {
+                if (sortBy.desc) sortBy.desc = 1
+                if (!sortBy.desc) sortBy.desc = -1
+                toys.sort((t1, t2) => (sortBy.desc) * (t2.price - t1.price))
+            }
+            if (sortBy.type === 'name') {
+                var num
+                if (sortBy.desc) num = 1
+                if (!sortBy.desc) num = -1
+                toys.sort((t1, t2) => (num) * (t2.name.localeCompare(t1.name)))
+            }
+
+            const regExp = new RegExp(filterBy.name, 'i')
             return toys.filter(toy =>
                 regExp.test(toy.name) &&
                 toy.price <= filterBy.maxPrice &&
-                toy.inStock !== filterBy.inStock  
+                toy.inStock !== filterBy.inStock
             )
         })
 }
@@ -84,7 +101,7 @@ function _createToy(name, price) {
     toy.price = +price
     toy.labels.push(_getRandomLable())
     toy.desc = utilService.makeLorem(utilService.getRandomIntInclusive(10, 15))
-    toy.creatAt = Date.now()
+    toy.createAt = Date.now()
     return toy
 }
 

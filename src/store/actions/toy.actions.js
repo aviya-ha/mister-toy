@@ -1,12 +1,13 @@
 import { toyService } from "../../services/toy.service.js"
-import { SET_TOYS, REMOVE_TOY, ADD_TOY, UPDATE_TOY, SET_FILTER_BY } from "../reducers/toy.reducer.js"
+import { SET_TOYS, REMOVE_TOY, ADD_TOY, UPDATE_TOY, SET_FILTER_BY, SORT_BY } from "../reducers/toy.reducer.js"
 import { store } from "../store.js"
 
 
 
 export function loadToys() {
     const filterBy = store.getState().toyModule.filterBy
-    return toyService.query(filterBy)
+    const sortBy = store.getState().toyModule.sortBy
+    return toyService.query(filterBy ,sortBy)
         .then(toys => {
             store.dispatch({ type: SET_TOYS, toys })
         })
@@ -42,4 +43,8 @@ export function saveToy(toy) {
 
 export function setFilterBy(filterBy) {
     store.dispatch({ type: SET_FILTER_BY, filterBy })
+}
+
+export function setSortBy(sortBy) {
+    store.dispatch({ type: SORT_BY, sortBy })
 }

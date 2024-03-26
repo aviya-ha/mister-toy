@@ -6,7 +6,7 @@ import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 
 import { ToyFilter } from '../cmps/ToyFilter.jsx'
 import { ToysList } from '../cmps/ToysList.jsx'
-import { loadToys, removeToy, setFilterBy } from '../store/actions/toy.actions.js'
+import { loadToys, removeToy, setFilterBy, setSortBy } from '../store/actions/toy.actions.js'
 
 
 
@@ -14,17 +14,23 @@ export function ToyIndex() {
 
     const toys = useSelector(storeState => storeState.toyModule.toys)
     const filterBy = useSelector(storeState => storeState.toyModule.filterBy)
-
+    const sortBy = useSelector(storeState => storeState.toyModule.sortBy)
+    // console.log('sortBy:', sortBy)
 
     useEffect(() => {
         loadToys()
             .catch(err => {
                 showErrorMsg('Cannot load toys!')
             })
-    }, [filterBy])
+    }, [filterBy, sortBy])
 
     function onSetFilter(filterBy) {
+        // setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
         setFilterBy(filterBy)
+    }
+
+    function onSetSort(sortBy) {
+        setSortBy(sortBy)
     }
 
     function onRemoveToy(toyId) {
@@ -43,7 +49,10 @@ export function ToyIndex() {
         <section className='toy-index-container'>
             <h1>All the bast toys in on place</h1>
             <Link to="/toy/edit" ><button>Add new toy</button> </Link>
-            <ToyFilter onSetFilter={onSetFilter} filterBy={filterBy} />
+            <ToyFilter
+                onSetFilter={onSetFilter} filterBy={filterBy}
+                onSetSort={onSetSort} sortBy={sortBy}
+            />
             <main>
                 <ToysList
                     toys={toys}

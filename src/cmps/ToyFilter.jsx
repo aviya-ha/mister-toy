@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from "react"
 import { utilService } from "../services/util.service.js"
 import { useEffectUpdate } from "../customHooks/useEffectUpdate.js"
+import { ToySort } from "./ToySort.jsx"
 
-export function ToyFilter({ filterBy, onSetFilter }) {
+
+export function ToyFilter({ filterBy, onSetFilter, onSetSort , sortBy }) {
 
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
     onSetFilter = useRef(utilService.debounce(onSetFilter, 30))
@@ -45,6 +47,8 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                     <option value="inStock">In stock</option>
                     <option value="outStock">Out of stoke</option>
                 </select>
+
+                <ToySort onSetSort={onSetSort} sortBy={sortBy}/>
 
 
 
