@@ -1,5 +1,5 @@
 import { Provider } from 'react-redux'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter , Route, Routes, HashRouter as Router} from 'react-router-dom'
 import '../src/assets/style/main.css'
 
 import { AppHeader } from './cmps/AppHeader.jsx'
