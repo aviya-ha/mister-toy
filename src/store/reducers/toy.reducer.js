@@ -16,7 +16,7 @@ const initialState = {
     toys: [],
     lastToys: [],
     filterBy: toyService.getDefaultFilter(),
-    sortBy:{ type: '', desc: -1}
+    sortBy:{ type: '', desc: 1}
 }
 
 export function toyReducer(state = initialState, action = {}) {
