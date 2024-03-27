@@ -5,10 +5,6 @@ import { store } from "../store.js"
 
 
 export function loadToys(filterBy , sortBy) {
-    // const filterBy = store.getState().toyModule.filterBy
-    // const sortBy = store.getState().toyModule.sortBy
-    console.log('filterBy11:', filterBy)
-    console.log('sortBy11:', sortBy)
     return toyService.query(filterBy ,sortBy)
         .then(toys => {
             store.dispatch({ type: SET_TOYS, toys })

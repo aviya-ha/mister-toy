@@ -16,7 +16,6 @@ export function ToyIndex() {
     const filterBy = useSelector(storeState => storeState.toyModule.filterBy)
     const sortBy = useSelector(storeState => storeState.toyModule.sortBy)
 
-    console.log('filterByasfas:', filterBy)
     useEffect(() => {
         loadToys(filterBy , sortBy)
             .catch(err => {
