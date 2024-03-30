@@ -12,6 +12,7 @@ import { loadToys, removeToy, setFilterBy, setSortBy } from '../store/actions/to
 
 export function ToyIndex() {
 
+    const user = useSelector(storeState => storeState.userModule.loggedInUser)
     const toys = useSelector(storeState => storeState.toyModule.toys)
     const filterBy = useSelector(storeState => storeState.toyModule.filterBy)
     const sortBy = useSelector(storeState => storeState.toyModule.sortBy)
@@ -44,10 +45,11 @@ export function ToyIndex() {
 
 
     if (!toys) return <h1>loading...</h1>
+    console.log('user:', user)
     return (
         <section className='toy-index-container'>
             <h1>All the bast toys in on place</h1>
-            <Link to="/toy/edit" ><button>Add new toy</button> </Link>
+            {user && user.isAdmin && <Link to="/toy/edit" ><button>Add new toy</button> </Link>}
             <ToyFilter
                 onSetFilter={onSetFilter} filterBy={filterBy}
                 onSetSort={onSetSort} sortBy={sortBy}
@@ -56,6 +58,7 @@ export function ToyIndex() {
                 <ToysList
                     toys={toys}
                     onRemoveToy={onRemoveToy}
+                    user={user}
                 />
 
             </main>

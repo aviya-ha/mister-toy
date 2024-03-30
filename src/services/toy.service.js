@@ -13,27 +13,52 @@ export const toyService = {
 
 const labels = ["On wheels", "Box game", "Art", "Baby", "Doll", "Puzzle", "Outdoor", "Battery Powered"]
 
-function query(filterBy, sort) {
-    return httpService.get('toy', { params: { filterBy, sort } })
+async function query(filterBy, sort) {
+    try {
+        return await httpService.get('toy', { params: { filterBy, sort } })
+    } catch (err) {
+        console.log(err);
+    }
+
 }
 
 function getLabels() {
     return [...labels]
 }
 
-function getById(toyId) {
-    return httpService.get(`toy/${toyId}`)
+async function getById(toyId) {
+    try {
+        return await httpService.get(`toy/${toyId}`)
+    } catch (err) {
+        console.log(err);
+    }
+
 }
 
-function remove(toyId) {
-    return httpService.delete(`toy/${toyId}`)
+async function remove(toyId) {
+    try {
+        return await httpService.delete(`toy/${toyId}`)
+    } catch (err) {
+        console.log(err);
+    }
+
 }
 
-function save(toy) {
+async function save(toy) {
     if (toy._id) {
-        return httpService.put(`toy/${toy._id}`, toy)
+        try {
+            return await httpService.put(`toy/${toy._id}`, toy)
+        } catch (err) {
+            console.log(err);
+        }
+
     } else {
-        return httpService.post('toy', toy)
+        try {
+            return await httpService.post('toy', toy)
+        } catch (err) {
+            console.log(err);
+        }
+
     }
 }
 
@@ -52,5 +77,5 @@ function getDefaultFilter() {
 }
 
 function getDefaultSort() {
-    return { type: '', desc: -1}
+    return { type: '', desc: -1 }
 }
