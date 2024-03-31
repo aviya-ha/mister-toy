@@ -2,11 +2,17 @@ import { useEffect, useRef, useState } from "react"
 import { utilService } from "../services/util.service.js"
 import { useEffectUpdate } from "../customHooks/useEffectUpdate.js"
 import { ToySort } from "./ToySort.jsx"
+import { FilterInput } from "./FilterInput.jsx"
+import { useSelector } from "react-redux"
+import { LabelSelect } from "./LabelSelect.jsx"
+import { InStock } from "./InStock.jsx"
 
 
-export function ToyFilter({ filterBy, onSetFilter, onSetSort , sortBy }) {
 
+export function ToyFilter({ filterBy, onSetFilter }) {
+    const labels = useSelector((storeState) => storeState.toyModule.labels)
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
+
     onSetFilter = useRef(utilService.debounce(onSetFilter, 30))
 
     useEffectUpdate(() => {
@@ -19,39 +25,18 @@ export function ToyFilter({ filterBy, onSetFilter, onSetSort , sortBy }) {
         setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
     }
 
+    const { name, inStock, sortBy, byLabel } = filterByToEdit
     return (
-        <section className="car-filter full main-layout">
+        <section className="toy-filter full main-layout">
             <h2>Toys Filter</h2>
-            <form >
-                <label htmlFor="name">Name:</label>
-                <input type="text"
-                    id="name"
-                    name="name"
-                    placeholder="By name"
-                value={filterByToEdit.txt}
-                onChange={handleChange}
-                />
-
-                <label htmlFor="maxPrice">Max price:</label>
-                <input type="number"
-                    id="maxPrice"
-                    name="maxPrice"
-                    placeholder="By max price"
-                value={filterByToEdit.maxPrice || ''}
-                onChange={handleChange}
-                />
-
-                <label htmlFor="inStock">by stock:</label>
-                <select name="inStock" id="inStock" onChange={handleChange}>
-                    <option value="all">All</option>
-                    <option value="inStock">In stock</option>
-                    <option value="outStock">Out of stoke</option>
-                </select>
-
-                <ToySort onSetSort={onSetSort} sortBy={sortBy}/>
-
-            </form>
-
+            <FilterInput handleChange={handleChange} name={name} />
+            <LabelSelect
+                handleChange={handleChange}
+                labels={labels}
+                byLabel={byLabel}
+            />
+             <InStock inStock={inStock} handleChange={handleChange} />
+             <ToySort sortBy={sortBy} handleChange={handleChange} />
         </section>
     )
 }

@@ -13,7 +13,6 @@ export const toyService = {
     save,
     getEmptyToy,
     getDefaultFilter,
-    getDefaultSort,
     getLabels
 }
 
@@ -62,5 +61,5 @@ function getEmptyToy() {
 }
 
 function getDefaultFilter() {
-    return { name: '', maxPrice: '', inStock: '', byLabel: [], sortBy: '' }
+    return { name: '', inStock: '', byLabel: [], sortBy: '' }
 }

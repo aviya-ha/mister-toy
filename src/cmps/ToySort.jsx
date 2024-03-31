@@ -1,56 +1,28 @@
-import { useEffect, useState } from "react"
+import * as React from 'react'
+import InputLabel from '@mui/material/InputLabel'
+import MenuItem from '@mui/material/MenuItem'
+import FormControl from '@mui/material/FormControl'
+import Select from '@mui/material/Select'
 
-
-export function ToySort({ onSetSort, sortBy }) {
-
-    const [sortByToEdit, setSortByToEdit] = useState({ ...sortBy })
-    
-    useEffect(() => {
-        onSetSort(sortByToEdit)
-
-    }, [sortByToEdit])
-
-    function handleChange({ target }) {
-        const field = target.name
-        const value = target.type === 'number' ? +target.value : target.value
-        
-        setSortByToEdit(prevSort => ({
-            ...prevSort,
-            [field]: value,
-        }))
-    }
-
-     function handleChangeCheckbox({ target }){
-        const field = target.name
-        const checked = target.checked
-
-        setSortByToEdit(prevSort => ({
-            ...prevSort,
-            [field]: checked,
-        }))
-     }
-
-    return (<>
-        <select
-            className="sort-type"
-            name="type"
-            value={sortByToEdit.type}
-            onChange={handleChange}
-        >
-            <option value={''}>----</option>
-            <option value="createAt">Date</option>
-            <option value="name">Name</option>
-            <option value="price">Price</option>
-        </select>
-        <label>
-            <input
-                type="checkbox"
-                name="desc"
-                checked={sortByToEdit.desc > 0}
-                onChange={handleChangeCheckbox}
-            />
-            Descending
-        </label>
-    </>
-    )
+export function ToySort({handleChange, sortBy}) {
+  return (
+    <FormControl sx={{m: 1, minWidth: 120}} size="small">
+      <InputLabel id="demo-select-small-label">Sort By</InputLabel>
+      <Select
+        labelId="demo-select-small-label"
+        id="demo-select-small"
+        value={sortBy}
+        label=""
+        onChange={handleChange}
+        name="sortBy"
+      >
+        <MenuItem value="">
+          <em>All</em>
+        </MenuItem>
+        <MenuItem value="name">Name</MenuItem>
+        <MenuItem value="price">Price</MenuItem>
+        <MenuItem value="createdAt">Created at</MenuItem>
+      </Select>
+    </FormControl>
+  )
 }
