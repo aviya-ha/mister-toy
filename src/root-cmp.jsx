@@ -1,6 +1,6 @@
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router , Route, Routes, HashRouter } from 'react-router-dom'
-import '../src/assets/style/main.css'
+import '../src/assets/style/main.scss'
 
 import { AppHeader } from './cmps/AppHeader.jsx'
 // import { AppFooter } from './cmps/AppFooter.jsx'
@@ -19,7 +19,7 @@ export function App() {
             <Router>
                 <section className="app">
                     <AppHeader />
-                    <main>
+                    <main className='main-main'>
                         <Routes>
                             <Route element={<HomePage />} path="/" />
                             {/* <Route element={<AboutUs />} path="/about" /> */}

@@ -1,0 +1,51 @@
+.app-header {
+    font-size: 16px;
+    background-color: $clr1;
+    color: $gray3;
+    padding-block: 16px;
+    border-radius: 25px 25px 0px 0px;
+
+
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-content: center;
+        padding-inline: 2em;
+
+        .app-nav {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .login-container {
+            align-self: center;
+
+            span {
+                margin-inline: 1em;
+            }
+
+            .login-page-inside {
+                display: flex;
+
+                .is-logged {
+                    margin-inline: 0.2em;
+                }
+
+                .login-form {
+
+
+                    input {
+                        width: 80px;
+                        margin-inline: 0.2em;
+                    }
+                }
+            }
+        }
+
+
+    }
+
+
+
+}

@@ -10,10 +10,10 @@ export function ToysList({ toys, onRemoveToy, user }) {
                 <li className="toy-preview" key={toy._id}>
                     <ToyPreview toy={toy} />
                     {user && user.isAdmin && <div>
-                        <button onClick={() => onRemoveToy(toy._id)}>x</button>
-                        <Link to={`/toy/edit/${toy._id}`}> <button> Edit </button></Link>
+                        <button className="btn btn-x" onClick={() => onRemoveToy(toy._id)}>x</button>
+                        <Link to={`/toy/edit/${toy._id}`}> <button className="btn btn-edit"> Edit </button></Link>
                     </div>}
-                    <Link to={`/toy/${toy._id}`}> <button> details </button></Link>
+                    <Link to={`/toy/${toy._id}`}> <button className="btn btn-details"> details </button></Link>
 
                     {/* <button className="buy">
                         Add to Cart

@@ -40,7 +40,7 @@ export function ToyIndex() {
     if (!toys) return <h1>loading...</h1>
     return (
         <section className='toy-index-container'>
-            <h1>All the bast toys in on place</h1>
+            {/* <h1>All the bast toys in on place</h1> */}
             {user && user.isAdmin && <Link to="/toy/edit" ><button>Add new toy</button> </Link>}
             <ToyFilter
                 onSetFilter={onSetFilter} filterBy={filterBy}

@@ -1,0 +1,28 @@
+.toy-list{
+    background-color: $clr1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 10px;
+
+.btn{
+    background-color: inherit;
+    border: 1px solid $gray3;
+    // padding: 2px;
+}
+    .toy-preview {
+        // background-color: $clr1bg;
+        padding: 0.625em;
+        display: flex;
+        flex-flow: column;
+        gap: 0.3125em;
+        align-items: center;
+        width:200px;
+
+        
+        img{
+            max-height: 100px;
+            border-radius: 10px;
+        }
+    }
+}

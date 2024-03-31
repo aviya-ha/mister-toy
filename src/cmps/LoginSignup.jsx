@@ -35,9 +35,9 @@ export function LoginSignup() {
   return (
     <div className="login-page-inside">
       <LoginForm onLogin={onLogin} isSignup={isSignup} />
-      <div className="btns"> 
-        <a href="#" onClick={() => setIsSignUp(!isSignup)}>
-          {isSignup ? 'Already a member? Login' : 'New user? Signup here'}
+      <div className="is-logged"> 
+        <a  href="#" onClick={() => setIsSignUp(!isSignup)}>
+          {isSignup ? 'Login' : 'Signup'}
         </a>
       </div>
     </div>

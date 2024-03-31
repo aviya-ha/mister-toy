@@ -5,8 +5,8 @@
 
   body {
     margin: 0;
-    color: var(--gray3);
-    background-color: var(--clr2bg-main);
+    color: $gray3;
+    background-color: $clr2bg-main;
   }
   
   h1,
@@ -26,8 +26,13 @@
   a {
     text-decoration: none;
     color: unset;
+    font-family: 'Edu VIC WA NT Beginner', cursive;
   }
   
+  .main-main{
+    background-color: $clr1;
+
+  }
   
   
   /* Dont stretch my Media */

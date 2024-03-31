@@ -7,7 +7,7 @@ export function FilterInput({ handleChange, name }) {
         <Box
             component="form"
             sx={{
-                '& > :not(style)': { m: 1, width: '25ch' },
+                '& > :not(style)': { m: 1, width: '15ch' },
             }}
             noValidate
             autoComplete="off"

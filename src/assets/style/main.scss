@@ -1,0 +1,31 @@
+// SETUP
+// @import 'setup/typography';
+@import 'setup/variables';
+// @import 'setup/mixins';
+// @import 'setup/functions';
+
+// BASICS
+@import 'base/helpers';
+@import 'base/base';
+@import 'base/layout';
+
+// COMPONENTS
+@import 'cmps/main-header';
+@import 'cmps/HomePage';
+@import 'cmps/ToyList';
+@import 'cmps/ToyIndex';
+// @import 'cmps/cards';
+// @import 'cmps/sidebar';
+
+.app {
+    display: flex;
+    flex-direction: column;
+    // min-height: 100vh;
+    margin-inline: 3em;
+    margin-top: 2em;
+    
+}
+
+.app > * {
+    width: 100%;
+}
