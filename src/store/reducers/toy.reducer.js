@@ -7,7 +7,7 @@ export const ADD_TOY = 'ADD_TOY'
 export const UPDATE_TOY = 'UPDATE_TOY'
 
 export const SET_FILTER_BY = 'SET_FILTER_BY'
-export const SORT_BY = 'SORT_BY'
+export const SET_LABELS = 'SET_LABELS'
 
 
 
@@ -16,7 +16,7 @@ const initialState = {
     toys: [],
     lastToys: [],
     filterBy: toyService.getDefaultFilter(),
-    sortBy:{ type: '', desc: 1}
+    labels: ["On wheels", "Box game", "Art", "Baby", "Doll", "Puzzle", "Outdoor", "Battery Powered"]
 }
 
 export function toyReducer(state = initialState, action = {}) {
@@ -51,11 +51,7 @@ export function toyReducer(state = initialState, action = {}) {
                 filterBy: { ...state.filterBy, ...action.filterBy }
             }
 
-            case SORT_BY:
-            return {
-                ...state,
-                sortBy: { ...state.sortBy, ...action.sortBy }
-            }
+    
 
 
         default:
