@@ -13,7 +13,9 @@ export const toyService = {
     save,
     getEmptyToy,
     getDefaultFilter,
-    getLabels
+    getLabels,
+    addMsg,
+    removeMsg
 }
 
 async function query(filterBy = {}) {
@@ -62,4 +64,15 @@ function getEmptyToy() {
 
 function getDefaultFilter() {
     return { name: '', inStock: '', byLabel: [], sortBy: '' }
+}
+
+async function addMsg(toyId, txt) {
+    // console.log('toyId',toyId , txt)
+    const savedMsg = await httpService.post(`toy/${toyId}/msg`, { txt })
+    return savedMsg
+}
+
+async function removeMsg(toyId, msgId) {
+    const removedId = await httpService.delete(`toy/${toyId}/msg/${msgId}`)
+    return removedId
 }
