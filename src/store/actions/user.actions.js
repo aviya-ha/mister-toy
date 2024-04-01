@@ -35,8 +35,11 @@ export async function login(credentials) {
 
 export async function signup(credentials) {
     try {
+        console.log('hey')
         const user = await userService.signup(credentials)
+        console.log('user:', user)
         store.dispatch({ type: SET_USER, user })
+        console.log('user:', user)
         return user
     } catch (err) {
         console.log('user actions -> Cannot signup', err)

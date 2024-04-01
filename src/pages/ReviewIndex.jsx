@@ -73,17 +73,17 @@ export function ReviewIndex() {
             {canRemove(review) &&
               <button onClick={() => onRemove(review._id)}>X</button>}
             <p>
-              About:
+              {/* About:
               <Link to={`/user/${review.aboutUser._id}`}>
                 {review.aboutUser.fullname}
-              </Link>
+              </Link> */}
             </p>
             <h3><pre>{review.txt}</pre></h3>
             <p>
-              By:
+              {/* By:
               <Link to={`/user/${review.byUser._id}`}>
                 {review.byUser.fullname}
-              </Link>
+              </Link> */}
             </p>
           </li>
         ))}

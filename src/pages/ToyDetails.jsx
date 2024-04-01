@@ -3,6 +3,9 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { toyService } from '../services/toy.service.js'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 import { useSelector } from 'react-redux'
+import { Reviews } from '../cmps/Reviews.jsx'
+
+
 
 function getEmptyMsg() {
   return {
@@ -74,6 +77,9 @@ export function ToyDetails() {
       <h1>Toy name : {toy.name}</h1>
       <h5>Price: ${toy.price}</h5>
       <img src={toy.img} alt="" />
+
+      <Reviews toy={toy}/>
+      
       <ul>
         {toy.msgs &&
           toy.msgs.map((msg) => (
@@ -85,6 +91,7 @@ export function ToyDetails() {
             </li>
           ))}
       </ul>
+
       <form className="login-form" onSubmit={onSaveMsg}>
         <input
           type="text"
@@ -97,10 +104,7 @@ export function ToyDetails() {
         />
         <button>Send</button>
       </form>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi voluptas
-        cumque tempore, aperiam sed dolorum rem!
-      </p>
+
       <Link className='back-btn' to={`/toy`}>Back</Link>
     </section>
   )
