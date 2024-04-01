@@ -73,19 +73,23 @@ export function ToyDetails() {
   const { txt } = msg
   if (!toy) return <div>Loading...</div>
   return (
-    <section className="toy-details">
-      <h1>Toy name : {toy.name}</h1>
-      <h5>Price: ${toy.price}</h5>
-      <img src={toy.img} alt="" />
+    <section className="toy-details"> 
+    <img src={toy.img} alt={toy.name} />
 
-      <Reviews toy={toy}/>
+    <section className='main-details'>
       
-      <ul>
+      <div className='head'>
+        <h1>Toy name : {toy.name}</h1>
+      <h5>Price: ${toy.price}</h5>
+      </div>
+
+<section className='msgs'>
+      <ul className='msg-list clean-list'>
         {toy.msgs &&
           toy.msgs.map((msg) => (
             <li key={msg.id}>
               By: {msg.by.fullname} - {msg.txt}
-            { user && msg.by._id === user._id && <button type="button" onClick={() => onRemoveMsg(msg.id)}>
+            { user && msg.by._id === user._id && <button className='btn' type="button" onClick={() => onRemoveMsg(msg.id)}>
                 X
               </button>}
             </li>
@@ -102,10 +106,12 @@ export function ToyDetails() {
           required
           autoFocus
         />
-        <button>Send</button>
+        <button className='btn'>Send</button>
       </form>
-
-      <Link className='back-btn' to={`/toy`}>Back</Link>
+</section>
+      <Reviews toy={toy}/>
+      <Link className='back-btn' to={`/toy`}>Back</Link> 
+      </section>
     </section>
   )
 }

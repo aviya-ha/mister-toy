@@ -9,7 +9,6 @@ import { logout } from "../store/actions/user.actions";
 export function AppHeader() {
 
     const user = useSelector(storeState => storeState.userModule.loggedInUser)
-    console.log('user:', user)
     function onLogout() {
         logout()
             .then(() => {

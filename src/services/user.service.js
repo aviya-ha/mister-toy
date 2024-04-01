@@ -22,10 +22,8 @@ async function login({ username, password }) {
 }
 
 async function signup(newUser) {
-    console.log('newUser:', newUser)
     if (!newUser.imgUrl) newUser.imgUrl = 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
     const user = await httpService.post(BASE_URL + 'signup', { newUser })
-    console.log('user:', user)
     if (user) return _setLoggedinUser(user)
 }
 
@@ -41,7 +39,6 @@ function getLoggedinUser() {
 function _setLoggedinUser(user) {
     // const userToSave = { _id: user._id, fullname: user.fullname, isAdmin: user.isAdmin, imgUrl: user.imgUrl, }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
-    console.log('useraa:', user)
     return user
 }
 

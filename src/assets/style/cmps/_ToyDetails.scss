@@ -1,0 +1,70 @@
+.toy-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: $clr2;
+    justify-items: center;
+    font-size: 20px;
+
+    img {
+        align-self: center;
+        max-height: 80vh;
+        margin: 6px;
+        border-radius: 15px;
+    }
+
+    .main-details {
+        margin-left: 10px;
+        justify-self: start;
+
+        display: flex;
+        flex-flow: column;
+
+        .head {
+            margin-top: 5px;
+            background-color: $clr1;
+            display: flex;
+            align-items: center;
+            align-content: center;
+            justify-content: space-between;
+        }
+
+        .msgs {
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            // border:1px solid $clr1;
+            margin-block: 10px;
+
+            .msg-list {
+                li {
+                    border:1px solid $clr1;
+
+                    .btn{
+                        margin-left: 5px;
+                    }
+                }
+            }
+        }
+
+
+        .review-index{
+            .review-list{
+                li{
+                    font-size: 0.7em;
+                    display: flex;
+                    border:1px solid $clr1;
+                    align-items: center;
+                    justify-content: space-around;
+
+                    .review-details{
+                        p{
+                            margin: 0;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+
+}
